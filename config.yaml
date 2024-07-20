@@ -1,0 +1,16 @@
+# least-time
+# weighted-round-robin
+# connection-per-second
+# round-robin
+algorithm: "connection-per-second"
+port: 3030
+servers:
+  - 
+    host: "http://localhost:9876"
+    weight: 0.1
+    connections: 1
+  
+  - 
+    host: "http://localhost:11111"
+    weight: 0.9
+    connections: 100
