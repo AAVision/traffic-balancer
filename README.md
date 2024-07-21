@@ -10,7 +10,7 @@
 - connection-per-second
 - round-robin
 
-## Configuration 
+## Configuration :construction:
 
 Updating the `config.yaml` file:
 ```bash
@@ -21,6 +21,7 @@ Updating the `config.yaml` file:
 # round-robin
 algorithm: "weighted-round-robin" # Algorithm used
 port: 3030 # Port that the reverse proxy will run on
+strict: true # strict mode for black-listing IPs
 servers: #list of servers.
   - 
     host: "http://localhost:9876"

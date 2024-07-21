@@ -16,6 +16,7 @@ import (
 
 var (
 	algorithm = ""
+	strict    = false
 )
 
 type InternalConnections struct {
@@ -33,6 +34,7 @@ func (i *InternalConnections) IncreaseConnection(key string) {
 }
 
 func lb(w http.ResponseWriter, r *http.Request) {
+
 	var peer *cmd.Backend
 	attempts := cmd.GetAttemptsFromContext(r)
 	if attempts > 3 {
@@ -54,16 +56,19 @@ func lb(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if peer != nil {
+
 		if internalConnections.connections[peer.URL.String()] > peer.Connections {
 			peer.SetAlive(false)
 			return
 		}
 		log.Printf("MESSAGE FORWARDED to server: %s\n", peer.URL)
+
 		peer.ReverseProxy.ServeHTTP(w, r)
 		return
 	}
 
 	http.Error(w, "Service not available", http.StatusServiceUnavailable)
+
 }
 
 func healthCheck() {
@@ -100,6 +105,7 @@ func main() {
 	var c cmd.Config
 	c.GetConf()
 	algorithm = c.Algorithm
+	strict = c.Strict
 
 	if len(c.Servers) == 0 {
 		log.Fatal("Please provide one or more backends to load balance inside the config.yml file!!!")

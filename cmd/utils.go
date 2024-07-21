@@ -10,6 +10,7 @@ import (
 type Config struct {
 	Algorithm string `yaml:"algorithm"`
 	Port      int    `yaml:"port"`
+	Strict    bool   `yaml:"strict"`
 	Servers   []struct {
 		Host        string  `yaml:"host"`
 		Weight      float64 `yaml:"weight"`
@@ -18,7 +19,7 @@ type Config struct {
 }
 
 func (c *Config) GetConf() *Config {
-	yamlFile, err := os.ReadFile("config.yaml")
+	yamlFile, err := os.ReadFile("config/config.yaml")
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}

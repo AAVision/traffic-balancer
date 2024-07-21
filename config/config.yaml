@@ -2,8 +2,9 @@
 # weighted-round-robin
 # connection-per-second
 # round-robin
-algorithm: "connection-per-second"
+algorithm: "weighted-round-robin"
 port: 3030
+strict: true
 servers:
   - 
     host: "http://localhost:9876"
@@ -11,6 +12,6 @@ servers:
     connections: 1
   
   - 
-    host: "http://localhost:11111"
+    host: "http://localhost"
     weight: 0.9
     connections: 100
