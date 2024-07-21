@@ -30,12 +30,3 @@ func (c *Config) GetConf() *Config {
 
 	return c
 }
-
-func SaveLogs() {
-	f, err := os.OpenFile("logs/tb.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil {
-		log.Fatalf("error opening file: %v", err)
-	}
-	defer f.Close()
-	log.SetOutput(f)
-}

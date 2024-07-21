@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 	"sync"
 	"time"
 
@@ -89,6 +90,13 @@ func resetConnections() {
 
 func main() {
 
+	f, err := os.OpenFile("logs/tb.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatalf("error opening file: %v", err)
+	}
+	defer f.Close()
+	log.SetOutput(f)
+
 	var c cmd.Config
 	c.GetConf()
 	algorithm = c.Algorithm
@@ -145,6 +153,8 @@ func main() {
 	go resetConnections()
 
 	log.Printf("Load Balancer started at :%d\n", c.Port)
+	fmt.Printf("Load Balancer started at :%d\n", c.Port)
+
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}
