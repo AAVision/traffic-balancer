@@ -12,14 +12,14 @@
 
 ## Configuration :construction:
 
-Updating the `config.yaml` file:
+Updating the `config/config.yaml` file:
 ```bash
 
 # least-time
 # weighted-round-robin
 # connection-per-second
 # round-robin
-algorithm: "weighted-round-robin" # Algorithm used
+algorithm: "weighted-round-robin" # Algorithm to be used
 port: 3030 # Port that the reverse proxy will run on
 strict: true # strict mode for black-listing IPs
 servers: #list of servers.
@@ -35,6 +35,18 @@ servers: #list of servers.
 
 ```
 
+## Usage :rocket:
+
+```bash
+go build
+```
+
+```bash
+./traffic-balancer 
+Load Balancer started at :3030
+```
+
+:warning: don't forget to add your servers in the `config/config.yaml` file
 
 ## LICENSE :balance_scale:
 
