@@ -22,6 +22,7 @@ Updating the `config/config.yaml` file:
 algorithm: "weighted-round-robin" # Algorithm to be used
 port: 3030 # Port that the reverse proxy will run on
 strict: true # strict mode for black-listing IPs
+log: true # save logs to file in log folder
 servers: #list of servers.
   - 
     host: "http://localhost:9876"
