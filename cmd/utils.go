@@ -12,6 +12,7 @@ type Config struct {
 	Algorithm string `yaml:"algorithm"`
 	Port      int    `yaml:"port"`
 	Strict    bool   `yaml:"strict"`
+	Log       bool   `yaml:"log"`
 	Servers   []struct {
 		Host        string  `yaml:"host"`
 		Weight      float64 `yaml:"weight"`
