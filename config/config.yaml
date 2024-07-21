@@ -4,7 +4,7 @@
 # round-robin
 algorithm: "weighted-round-robin"
 port: 3030
-strict: true
+strict: false
 servers:
   - 
     host: "http://localhost:9876"

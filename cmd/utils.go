@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"bufio"
 	"log"
 	"os"
 
@@ -30,4 +31,20 @@ func (c *Config) GetConf() *Config {
 	}
 
 	return c
+}
+
+func ReadLines(path string) ([]string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var ips []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		ips = append(ips, scanner.Text())
+	}
+
+	return ips, scanner.Err()
 }

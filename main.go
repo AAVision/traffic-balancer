@@ -17,6 +17,7 @@ import (
 var (
 	algorithm = ""
 	strict    = false
+	ips       = []string{}
 )
 
 type InternalConnections struct {
@@ -34,6 +35,14 @@ func (i *InternalConnections) IncreaseConnection(key string) {
 }
 
 func lb(w http.ResponseWriter, r *http.Request) {
+	if strict {
+		for _, ip := range ips {
+			if ip == r.RemoteAddr {
+				w.WriteHeader(500)
+				return
+			}
+		}
+	}
 
 	var peer *cmd.Backend
 	attempts := cmd.GetAttemptsFromContext(r)
@@ -109,6 +118,13 @@ func main() {
 
 	if len(c.Servers) == 0 {
 		log.Fatal("Please provide one or more backends to load balance inside the config.yml file!!!")
+	}
+
+	if strict {
+		ips, err = cmd.ReadLines("config/iplists.txt")
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	for _, server := range c.Servers {
