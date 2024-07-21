@@ -1,6 +1,6 @@
 # least-time
 # weighted-round-robin
-# connection-per-second
+# connection-per-time
 # round-robin
 algorithm: "weighted-round-robin"
 port: 3030

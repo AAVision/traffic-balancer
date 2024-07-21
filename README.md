@@ -7,7 +7,7 @@
 **Load Balancing Algorithm**
 - least-time
 - weighted-round-robin
-- connection-per-second
+- connection-per-time
 - round-robin
 
 ## Configuration :construction:
@@ -17,7 +17,7 @@ Updating the `config/config.yaml` file:
 
 # least-time
 # weighted-round-robin
-# connection-per-second
+# connection-per-time
 # round-robin
 algorithm: "weighted-round-robin" # Algorithm to be used
 port: 3030 # Port that the reverse proxy will run on

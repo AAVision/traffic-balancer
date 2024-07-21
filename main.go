@@ -57,7 +57,7 @@ func lb(w http.ResponseWriter, r *http.Request) {
 		peer = serverPool.GetLowestLatency()
 	case "weighted-round-robin":
 		peer = serverPool.GetHighestWeight()
-	case "connection-per-second":
+	case "connection-per-time":
 		peer = serverPool.GetNextPeer()
 		internalConnections.IncreaseConnection(peer.URL.String())
 	default:
