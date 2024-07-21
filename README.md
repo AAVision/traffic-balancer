@@ -47,7 +47,7 @@ go build
 Load Balancer started at :3030
 ```
 
-:warning: don't forget to add your servers in the `config/config.yaml` file
+:warning: **don't forget to add your servers in the `config/config.yaml` file**
 
 ## LICENSE :balance_scale:
 
