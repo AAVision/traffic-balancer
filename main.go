@@ -7,12 +7,10 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"os"
 	"sync"
 	"time"
 
 	"github.com/AAVision/traffic-balancer/cmd"
-	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -22,30 +20,6 @@ var (
 type InternalConnections struct {
 	mu          sync.Mutex
 	connections map[string]int
-}
-
-type Config struct {
-	Algorithm string `yaml:"algorithm"`
-	Port      int    `yaml:"port"`
-	Servers   []struct {
-		Host        string  `yaml:"host"`
-		Weight      float64 `yaml:"weight"`
-		Connections int     `yaml:"connections"`
-	} `yaml:"servers"`
-}
-
-func (c *Config) getConf() *Config {
-	yamlFile, err := os.ReadFile("config.yaml")
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
-	}
-
-	err = yaml.Unmarshal(yamlFile, c)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
-	}
-
-	return c
 }
 
 var serverPool cmd.ServerPool
@@ -115,8 +89,8 @@ func resetConnections() {
 
 func main() {
 
-	var c Config
-	c.getConf()
+	var c cmd.Config
+	c.GetConf()
 	algorithm = c.Algorithm
 
 	if len(c.Servers) == 0 {

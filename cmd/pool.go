@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"net/url"
 	"sync/atomic"
 )
@@ -84,7 +83,7 @@ func (s *ServerPool) GetHighestWeight() *Backend {
 	highestServerWeight := s.backends[0]
 
 	for _, server := range s.backends[1:] {
-		fmt.Println(float64(server.Weight))
+
 		if server.Weight > highestServerWeight.Weight {
 			highestServerWeight = server
 		}
