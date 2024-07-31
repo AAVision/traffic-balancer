@@ -59,6 +59,13 @@ Load Balancer started at :3030
 
 :warning: **don't forget to add your servers in the `config/config.yaml` file**
 
+## TO-DO :man_playing_handball:	
+- Adding more `Access-Control-Allow` headers.
+- Add more load balancer algorithms.
+- Write unit tests.
+- Add Body size.
+- Add MTLS.
+
 ## LICENSE :balance_scale:
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/AAVision/traffic-balancer/blob/main/LICENSE) file for details.
