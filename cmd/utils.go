@@ -9,11 +9,12 @@ import (
 )
 
 type Config struct {
-	Algorithm string `yaml:"algorithm"`
-	Port      int    `yaml:"port"`
-	Strict    bool   `yaml:"strict"`
-	Log       bool   `yaml:"log"`
-	Servers   []struct {
+	Algorithm     string `yaml:"algorithm"`
+	Port          int    `yaml:"port"`
+	Strict        bool   `yaml:"strict"`
+	Log           bool   `yaml:"log"`
+	XssProtection bool   `yaml:"xss-protection"`
+	Servers       []struct {
 		Host        string  `yaml:"host"`
 		Weight      float64 `yaml:"weight"`
 		Connections int     `yaml:"connections"`

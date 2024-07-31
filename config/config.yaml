@@ -6,6 +6,7 @@ algorithm: "weighted-round-robin"
 port: 3030
 strict: false
 log: false
+xss-protection: true
 servers:
   - 
     host: "http://localhost:9876"

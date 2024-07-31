@@ -32,6 +32,7 @@ algorithm: "weighted-round-robin" # Algorithm to be used
 port: 3030 # Port that the reverse proxy will run on
 strict: true # strict mode for black-listing IPs
 log: true # save logs to file in log folder
+xss-protection: true # in default true it will add xss protection header to the requested sent from load balancer to the server.
 servers: #list of servers.
   - 
     host: "http://localhost:9876"

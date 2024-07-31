@@ -15,9 +15,10 @@ import (
 )
 
 var (
-	algorithm = ""
-	strict    = false
-	ips       = []string{}
+	algorithm     = ""
+	strict        = false
+	ips           = []string{}
+	xssProtection = true
 )
 
 type InternalConnections struct {
@@ -72,6 +73,9 @@ func lb(w http.ResponseWriter, r *http.Request) {
 		}
 		log.Printf("MESSAGE FORWARDED to server: %s\n", peer.URL)
 
+		if xssProtection {
+			w.Header().Set("X-XSS-Protection", " 1; mode=block")
+		}
 		peer.ReverseProxy.ServeHTTP(w, r)
 		return
 	}
@@ -119,6 +123,7 @@ func main() {
 
 	algorithm = c.Algorithm
 	strict = c.Strict
+	xssProtection = c.XssProtection
 
 	if len(c.Servers) == 0 {
 		log.Fatal("Please provide one or more backends to load balance inside the config.yml file!!!")
