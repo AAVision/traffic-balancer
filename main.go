@@ -19,6 +19,7 @@ var (
 	strict        = false
 	ips           = []string{}
 	xssProtection = true
+	maxBodySize   = 1024
 )
 
 type InternalConnections struct {
@@ -76,6 +77,8 @@ func lb(w http.ResponseWriter, r *http.Request) {
 		if xssProtection {
 			w.Header().Set("X-XSS-Protection", " 1; mode=block")
 		}
+
+		r.Body = http.MaxBytesReader(w, r.Body, int64(maxBodySize))
 		peer.ReverseProxy.ServeHTTP(w, r)
 		return
 	}
@@ -124,6 +127,7 @@ func main() {
 	algorithm = c.Algorithm
 	strict = c.Strict
 	xssProtection = c.XssProtection
+	maxBodySize = c.MaxBodySize
 
 	if len(c.Servers) == 0 {
 		log.Fatal("Please provide one or more backends to load balance inside the config.yml file!!!")

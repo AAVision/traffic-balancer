@@ -7,13 +7,14 @@ port: 3030
 strict: false
 log: false
 xss-protection: true
+max-body-size: 1024
 servers:
   - 
     host: "http://localhost:9876"
-    weight: 0.1
+    weight: 0.9
     connections: 1
   
   - 
     host: "http://localhost"
-    weight: 0.9
+    weight: 0.1
     connections: 100

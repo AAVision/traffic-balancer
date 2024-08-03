@@ -63,7 +63,7 @@ Load Balancer started at :3030
 - Adding more `Access-Control-Allow` headers.
 - Add more load balancer algorithms.
 - Write unit tests.
-- Add Body size.
+- ~~Add Body size.~~
 - Add MTLS.
 
 ## LICENSE :balance_scale:

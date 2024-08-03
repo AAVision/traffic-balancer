@@ -14,6 +14,7 @@ type Config struct {
 	Strict        bool   `yaml:"strict"`
 	Log           bool   `yaml:"log"`
 	XssProtection bool   `yaml:"xss-protection"`
+	MaxBodySize   int    `yaml:"max-body-size"`
 	Servers       []struct {
 		Host        string  `yaml:"host"`
 		Weight      float64 `yaml:"weight"`
