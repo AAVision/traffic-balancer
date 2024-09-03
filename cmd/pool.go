@@ -40,15 +40,9 @@ func (s *ServerPool) MarkBackendStatus(backendUrl *url.URL, alive bool) {
 
 func (s *ServerPool) HealthCheck() {
 	for _, server := range s.backends {
-		// status := "online"
 		alive, latency := getBackendStatus(server.URL)
 		server.SetAlive(alive)
 		server.SetLatency(latency)
-		// if !alive {
-		// 	status = "offline"
-		// }
-		// log.Printf("%s is [%s]\n", server.URL, status)
-
 	}
 }
 
@@ -70,8 +64,12 @@ func (s *ServerPool) GetNextPeer() *Backend {
 
 func (s *ServerPool) GetLowestLatency() *Backend {
 	smallestServer := s.backends[0]
+	if len(s.backends) == 1 {
+		return smallestServer
+	}
+
 	for _, server := range s.backends[1:] {
-		if server.Latency < smallestServer.Latency {
+		if smallestServer.Latency > server.Latency {
 			smallestServer = server
 		}
 	}
@@ -81,6 +79,9 @@ func (s *ServerPool) GetLowestLatency() *Backend {
 
 func (s *ServerPool) GetHighestWeight() *Backend {
 	highestServerWeight := s.backends[0]
+	if len(s.backends) == 1 {
+		return highestServerWeight
+	}
 
 	for _, server := range s.backends[1:] {
 
