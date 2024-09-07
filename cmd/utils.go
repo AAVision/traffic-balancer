@@ -9,13 +9,14 @@ import (
 )
 
 type Config struct {
-	Algorithm     string `yaml:"algorithm"`
-	Port          int    `yaml:"port"`
-	Strict        bool   `yaml:"strict"`
-	Log           bool   `yaml:"log"`
-	XssProtection bool   `yaml:"xss-protection"`
-	MaxBodySize   int    `yaml:"max-body-size"`
-	Servers       []struct {
+	Algorithm                Algorithm `yaml:"algorithm"`
+	Port                     int       `yaml:"port"`
+	Strict                   bool      `yaml:"strict"`
+	Log                      bool      `yaml:"log"`
+	XssProtection            bool      `yaml:"xss-protection"`
+	AccessControlAllowOrigin string    `yaml:"access-control-allow-origin"`
+	MaxBodySize              int       `yaml:"max-body-size"`
+	Servers                  []struct {
 		Host        string  `yaml:"host"`
 		Weight      float64 `yaml:"weight"`
 		Connections int     `yaml:"connections"`

@@ -8,6 +8,7 @@ strict: false
 log: false
 xss-protection: true
 max-body-size: 1024
+access-control-allow-origin: "*"
 servers:
   - 
     host: "http://localhost:9876"

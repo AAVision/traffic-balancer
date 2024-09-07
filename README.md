@@ -1,7 +1,7 @@
 # Traffic Balancer
 
 <p align="center">
-  <img src="https://i.postimg.cc/prDRd08h/logo.gif" style="border-radius:9px;"/>
+  <img src="https://i.postimg.cc/prDRd08h/logo.gif" style="border-radius:10px;"/>
 </p>
 
 **Load Balancing Algorithm**
@@ -30,10 +30,12 @@ Updating the `config/config.yaml` file:
 # round-robin
 algorithm: "weighted-round-robin" # Algorithm to be used
 port: 3030 # Port that the reverse proxy will run on
-strict: true # strict mode for black-listing IPs
-log: true # save logs to file in log folder
-xss-protection: true # in default true it will add xss protection header to the requested sent from load balancer to the server.
-servers: #list of servers.
+strict: true # Strict mode for black-listing IPs
+log: true # Save logs to file in log folder
+access-control-allow-origin: "*" # CORS HEADERS
+max-body-size: 1024 # Maximum body size!
+xss-protection: true # In default true it will add xss protection header to the requested sent from load balancer to the server.
+servers: #List of servers.
   - 
     host: "http://localhost:9876"
     weight: 0.1
@@ -60,11 +62,15 @@ Load Balancer started at :3030
 :warning: **don't forget to add your servers in the `config/config.yaml` file**
 
 ## TO-DO :man_playing_handball:	
-- Adding more `Access-Control-Allow` headers.
+- ~~Adding more `Access-Control-Allow` header.~~
 - Add more load balancer algorithms.
 - Write unit tests.
+- ~~Add XSS Header protection.~~
 - ~~Add Body size.~~
 - Add MTLS.
+- Add Max File Size!
+- ~~Strict mode for black-listing IPs.~~
+- Gzip Compression.
 
 ## LICENSE :balance_scale:
 
