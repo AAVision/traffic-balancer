@@ -69,7 +69,7 @@ Load Balancer started at :3030
 - ~~Add Body size.~~
 - Add MTLS.
 - Add Max File Size!
-- ~~Strict mode for black-listing IPs.~~
+- ~~Strict mode for blocking black listing IPs.~~
 - Gzip Compression.
 
 ## LICENSE :balance_scale:
